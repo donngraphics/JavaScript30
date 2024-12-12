@@ -1,0 +1,1 @@
+Still working through the Odin Project. This time around I've completed Day 1 and 2 of Javascript30 Array Cardio.

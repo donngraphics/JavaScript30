@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Array Cardio 💪</title>
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
-<body>
+
+<body id="body">
   <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
   <script>
     // Get your shorts on - this is an array workout!
@@ -35,32 +37,129 @@
       'Berne, Eric', 'Berra, Yogi', 'Berry, Wendell', 'Bevan, Aneurin', 'Ben-Gurion, David', 'Bevel, Ken', 'Biden, Joseph', 'Bennington, Chester', 'Bierce, Ambrose',
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
-    
+    const body = document.getElementById("body");
+    const problem1 = document.createElement("h1");
+    const problem2 = document.createElement("h1");
+    const problem3 = document.createElement("h1");
+    const problem4 = document.createElement("h1");
+    const problem5 = document.createElement("h1");
+    const problem7 = document.createElement("h1");
+    const problem8 = document.createElement("h1");
+    //problem1.textContent = inventors[0]["year"];
+    body.appendChild(problem1);
+    body.appendChild(problem2);
+    body.appendChild(problem3);
+    body.appendChild(problem4);
+    body.appendChild(problem5);
+    body.appendChild(problem7);
+    body.appendChild(problem8);
+
+
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    let answer1 = inventors.filter((inventor) => {
+      return inventor.year >= 1500 && inventor.year < 1600;
+    });
+
+    problem1.textContent = JSON.stringify(answer1);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    let answer2 = inventors.map((inventor) => ({
+
+      firstName: inventor.first,
+      lastName: inventor.last
+    }));
+    problem2.textContent = JSON.stringify(answer2);
+
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    let answer3 = inventors.sort((a, b) => {
+      if (a.year > b.year) {
+
+        return 1;
+      } else {
+        return -1;
+      }
+
+    });
+    console.table(answer3);
+    problem3.textContent = JSON.stringify(answer3);
+
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
 
+    let answer4 = inventors.reduce((total, inventor) => {
+
+      return total + (inventor.passed - inventor.year);
+
+    }, 0);
+    problem4.textContent = JSON.stringify(answer4);
+
+
     // 5. Sort the inventors by years lived
+
+    let answer5 = inventors.sort((a, b) => {
+      let guyA = (a.passed - a.year);
+      let guyB = (b.passed - b.year);
+
+      return guyA > guyB ? -1 : 1;
+
+
+    });
+    problem5.textContent = JSON.stringify(answer5);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+    // const catagory = document.querySelector(".mw-category");
+    // const links = Array.from(catagory.querySelectorAll("a"));
 
+    // const de = links
+    //   .map(link => link.textContent)
+    //   .filter(streetName => streetName.includes("de"));
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const answer7 = people.sort((lastOne, nextOne) => {
+      // if (lastOne > nextOne) {
+
+      //   return 1;
+      // } else {
+      //   return -1;
+      // }
+
+      //const [last, first]
+
+
+      const [alast, afirst] = lastOne.split(",");
+      const [blast, bfirst] = nextOne.split(",");
+
+
+      return alast > blast ? 1 : -1;
+    });
+    console.log(answer7)
+    problem7.textContent = answer7;
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+
+    let answer8 = data.reduce((object, item) => {
+
+      if (!object[item]) {
+        object[item] = 0;
+      }
+      object[item]++
+      return object;
+
+    }, {});
+    problem8.textContent = JSON.stringify(answer8);
+    console.log(answer8);
+
 
   </script>
 </body>
+
 </html>
